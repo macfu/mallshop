@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.macfu.mapper.PmsProductLadderMapper" >
+  <resultMap id="BaseResultMap" type="com.macfu.model.po.PmsProductLadder" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="discount" property="discount" jdbcType="DECIMAL" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+  </resultMap>
+</mapper>

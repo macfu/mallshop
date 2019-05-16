@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+mybatis:
+  mapper-locations:
+   - classpath: mapper/*.xml
+   - classpath*: com/**/mapper/*.xml
+jwt:
+ tokenHeader: Authorization
+ secret: mySecret
+ expiration: 604800
+ tokenHead: Bearer
+logging:
+  level:
+   root: info
+   com.macfu: debug

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!--<generatorConfiguration>-->
+    <!--<properties resource="generator.properties"/>-->
+    <!--<context id="MysqlContext" targetRuntime="Mybatis3" defaultModelType="flat">-->
+        <!--<property name="beginningDelimiter" value="`"/>-->
+        <!--<property name="endingDelimiter" value="`"/>-->
+        <!--<property name="javaFileEncoding" value="UTF-8"/>-->
+        <!--&lt;!&ndash; 为实体类生成序列化方法Serializable &ndash;&gt;-->
+        <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>-->
+        <!--&lt;!&ndash; 为实体类创建一个toString方法 &ndash;&gt;-->
+        <!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>-->
+        <!--<plugin type="${mapper.plugin}">-->
+            <!--<property name="mappers" value="${mapper.mapper}"/>-->
+        <!--</plugin>-->
+        <!--&lt;!&ndash;<commentGenerator type="com.macfu.CommonGenerator">&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash; 是否去除自动生成的注释 &ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="suppressAllComments" value="true"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="suppressDate" value="true"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="addRemarkComments" value="true"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</commentGenerator>&ndash;&gt;-->
+
+        <!--<jdbcConnection driverClass="${jdbc.driverClass}"-->
+                        <!--connectionURL="${jdbc.connectionURL}"-->
+                        <!--userId="${jdbc.userId}"-->
+                        <!--password="${jdbc.password}">-->
+            <!--&lt;!&ndash; 解决mysql驱动升级到8.0不生成指定数据库代码的问题 &ndash;&gt;-->
+            <!--<property name="nullCatalogMeansCurrent" value="true"/>-->
+        <!--</jdbcConnection>-->
+        <!--<javaModelGenerator targetPackage="${modelPackage}" targetProject="${project}"/>-->
+        <!--<sqlMapGenerator targetPackage="${xmlPackage}" targetProject="${resource}"/>-->
+        <!--<javaClientGenerator type="XMLMAPPER" targetPackage="${mapperPackage}"-->
+                             <!--targetProject="${project}"/>-->
+        <!--&lt;!&ndash;生成全部表tableName设为%&ndash;&gt;-->
+        <!--<table tableName="%">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+    <!--</context>-->
+<!--</generatorConfiguration>-->
+
+<generatorConfiguration>
+    <properties resource="generator.properties"/>
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <plugin type="${mapper.plugin}">
+            <property name="mappers" value="${mapper.mapper}"/>
+        </plugin>
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.connectionURL}"
+                        userId="${jdbc.userId}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+        <javaModelGenerator targetPackage="${modelPackage}" targetProject="${project}"/>
+        <sqlMapGenerator targetPackage="${xmlPackage}" targetProject="${resource}"/>
+        <javaClientGenerator targetPackage="${mapperPackage}" targetProject="${project}" type="XMLMAPPER"/>
+        <table tableName="%">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

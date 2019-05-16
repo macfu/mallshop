@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.macfu.mapper.SmsFlashPromotionLogMapper" >
+  <resultMap id="BaseResultMap" type="com.macfu.model.po.SmsFlashPromotionLog" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="member_phone" property="memberPhone" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="subscribe_time" property="subscribeTime" jdbcType="TIMESTAMP" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+</mapper>

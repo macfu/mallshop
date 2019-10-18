@@ -1,0 +1,27 @@
+version: '3'
+services:
+  mall-admin:
+    image: mall/mall-admin:1.0-SNAPSHOT
+    container_name: mall-admin
+    ports:
+      - 8080:8080
+    external_links:
+      - mysql:db
+  mall-search:
+    image: mall/mall-search:1.0-SNAPSHOT
+    container_name: mall-search
+    ports:
+      - 8081:8081
+    external_links:
+      - elasticsearch:es
+      - mysql:db
+  mall-portal:
+    image: mall/mall-protal:1.0-SNAPSHOT
+    container_name: mall-port
+    ports:
+      - 8085:8085
+    external_links:
+      - redis:redis
+      - mongo:mongo
+      - mysql:db
+      - rabbitmq:rabbit

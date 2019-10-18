@@ -1,0 +1,71 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    command: mysqld --character-set-server=utf8mb4 --collection-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - /mydata/mysql/data/db:/var/lib/mysql
+      - /mydata/mysql/data/conf:/etc/mysql/conf.d
+      - /mydata/mysql/data/log:/var/log/mysql
+  redis:
+    image: redis:3.2
+    container_name: redis
+    command: redis-server --appendonly yes
+    volumes:
+      - /mydata/redis/data:/data
+    ports:
+      - 6379:6379
+  nginx:
+    image: nginx:1.10
+    container_name: nginx
+    volumes:
+      - /mydata/nginx/nginx.conf:/etc/nginx.conf
+      - /mydata/nginx/html:/usr/share/nginx/html
+      - /mydata/nginx/log:/var/log/nginx
+    ports:
+      - 80:80
+  elasticsearch:
+    image: elasticsearch:6.4.0
+    container_name: elasticsearch
+    environment:
+      - 'cluster.name=elasticsearch'
+      - 'discovery.type=single-node'
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+    volumes:
+      - /mydata/elasticsearch/plugins:/usr/share/elasticserach/plugins
+      - /mydata/elasticserach/data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+  kibana:
+    image: kibana:6.4.0
+    container_name: kibana
+    links:
+      - elasticsearch:es
+    depends_on:
+      - elasticsearch
+    environment:
+      - 'elasticsearch.hosts=http://es:9200'
+    ports:
+      - 5601:5601
+  mongo:
+    image: mongo:3.2
+    container_name: mongo
+    volumes:
+      - /mydata/mongo/db:/data/db
+    ports:
+      - 27017:27017
+  rabbitmq:
+    image: rabbitmq:3.7.15-management
+    container_name: rabbitmq
+    volumes:
+      - /mydata/rabbitmq/data:/var/lib/rabbitmq
+      - /mydata/rabbitmq/log:/var/log/rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672

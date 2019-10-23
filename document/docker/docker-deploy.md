@@ -87,7 +87,7 @@ rabbitmq:management
 ### 下载镜像文件
 docker pull elasticsearch:6.4.0
 ### 创建实例并运行
-docker run -p 9200:9200 -p 9300:9300 --name elasticsearch \
+docker run -p 9200:9200 -p 9300:9300 -e ES_JAVA_OPTS="-Xms256m -Xmx256m" --name elasticsearch \
 -v /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins \
 -v /mydata/elasticsearch/data:/usr/share/elasticsearch/data \
 -d elasticsearch:6.4.0
